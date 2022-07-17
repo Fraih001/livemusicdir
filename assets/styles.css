@@ -1,0 +1,15 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px gold solid
+}
+
+#main-search {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.label-search {
+    /* padding: 5rem; */
+}
+

@@ -46,8 +46,12 @@ const syncAndSeed = async() => {
         ]) 
     };
 
+// const { YOUTUBE_API_KEY } = require('./config');
+
 const path = require('path');
+const chalk = require('chalk');
 const express = require('express');
+require('dotenv').config();
 const app = express();
 
 app.use(express.json());
@@ -74,15 +78,24 @@ app.get('/api/concerts', async(req,res,next)=>{
     }catch(er){
         next(er)
     }
-})
+});
 
 const port = process.env.PORT || 3200
 app.listen(port, ()=> {
-    console.log(`listening on ${port}`)
+    console.log(chalk.yellow(`\n*********************** listening on ${port} ********************\n`))
 })
+
+function readyForYouTube(){
+    console.log(chalk.blue(`\n************ Ready to fetch YouTube Data! ***************\n`))
+}
 
 const start = async() => {
     try {
+       if(!process.env.API_KEY){
+        throw new Error("No API Key!")
+       } else {
+        readyForYouTube()
+       }
        await syncAndSeed();
 
     } catch(er) {
